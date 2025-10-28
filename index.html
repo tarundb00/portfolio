@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0f1724; /* dark navy */
+      --bg:#0f1724; 
       --card:#0b1220;
       --muted:#94a3b8;
-      --accent:#7c3aed; /* purple */
+      --accent:#7c3aed;
       --glass: rgba(255,255,255,0.03);
       --radius:16px;
       --max-width:1100px;
@@ -57,12 +57,10 @@
     .avatar{width:120px;height:120px;border-radius:16px;background:linear-gradient(135deg,#fff2,#fff2);display:block;margin:0 auto 14px}
     .small{font-size:13px;color:var(--muted)}
 
-    /* sections */
     section{margin-top:26px}
     .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
     .section-title h2{margin:0;font-size:18px}
 
-    /* projects grid */
     .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .card{background:var(--card);padding:14px;border-radius:12px;transition:transform var(--transition),box-shadow var(--transition);overflow:hidden}
     .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(4,6,19,0.6)}
@@ -70,11 +68,10 @@
     .tags{display:flex;gap:8px;flex-wrap:wrap}
     .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
 
-    /* skills */
+
     .skills{display:flex;gap:10px;flex-wrap:wrap}
     .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);font-weight:600}
 
-    /* contact */
     .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
     form{display:flex;flex-direction:column;gap:10px}
     input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:inherit}
@@ -82,11 +79,9 @@
 
     footer{margin-top:40px;text-align:center;color:var(--muted)}
 
-    /* utilities */
     .fadein{opacity:0;transform:translateY(12px);transition:opacity 520ms ease, transform 520ms ease}
     .inview{opacity:1;transform:none}
 
-    /* responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .projects{grid-template-columns:repeat(2,1fr)}
@@ -248,7 +243,7 @@ Built with a clean HTML/CSS front end and JavaScript/Java backend logic to proce
   </main>
 
   <script>
-    // small UX & animation: reveal on scroll
+ 
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target); }
@@ -256,7 +251,7 @@ Built with a clean HTML/CSS front end and JavaScript/Java backend logic to proce
     }, {threshold:0.12});
     document.querySelectorAll('.fadein').forEach(el=>io.observe(el));
 
-    // smooth scroll for internal links
+
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', (e)=>{
         const href = a.getAttribute('href');
@@ -267,7 +262,6 @@ Built with a clean HTML/CSS front end and JavaScript/Java backend logic to proce
       });
     });
 
-    // contact form (no backend) — simulate success and clear
     const form = document.getElementById('contactForm');
     const msg = document.getElementById('formMsg');
     form.addEventListener('submit',(e)=>{
@@ -276,7 +270,6 @@ Built with a clean HTML/CSS front end and JavaScript/Java backend logic to proce
       setTimeout(()=>{ msg.textContent = 'Thanks — message received (demo). I will reply to your email soon.'; form.reset(); }, 900);
     });
 
-    // copy email
     document.getElementById('copyEmail').addEventListener('click', async ()=>{
       try{
         await navigator.clipboard.writeText('youremail@example.com');
@@ -284,7 +277,6 @@ Built with a clean HTML/CSS front end and JavaScript/Java backend logic to proce
       }catch(err){ alert('Could not copy automatically — select & copy: youremail@example.com') }
     });
 
-    // current year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
