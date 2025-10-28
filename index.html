@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed; /* purple */
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --max-width:1100px;
+      --transition:300ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg),#071029 120%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding-bottom:60px;
+    }
+
+    header{
+      position:sticky;top:12px;z-index:30;display:flex;align-items:center;justify-content:center;padding:10px;
+    }
+    .navwrap{width:100%;max-width:var(--max-width);display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px}
+    nav a:hover{color:#fff;background:var(--glass);transform:translateY(-2px)}
+
+    main{max-width:var(--max-width);margin:36px auto;padding:18px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center}
+    .intro{padding:26px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .intro h1{margin:0;font-size:36px;letter-spacing:-0.02em}
+    .intro p.lead{color:var(--muted);margin-top:12px}
+    .cta{margin-top:18px;display:flex;gap:12px}
+    .btn{background:linear-gradient(90deg,var(--accent),#06b6d4);border:none;padding:10px 16px;border-radius:12px;color:white;font-weight:700;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(12,10,20,0.6)}
+
+    .profilecard{padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:18px}
+    .avatar{width:120px;height:120px;border-radius:16px;background:linear-gradient(135deg,#fff2,#fff2);display:block;margin:0 auto 14px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* sections */
+    section{margin-top:26px}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .section-title h2{margin:0;font-size:18px}
+
+    /* projects grid */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:var(--card);padding:14px;border-radius:12px;transition:transform var(--transition),box-shadow var(--transition);overflow:hidden}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(4,6,19,0.6)}
+    .card h3{margin:0 0 8px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* skills */
+    .skills{display:flex;gap:10px;flex-wrap:wrap}
+    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);font-weight:600}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:inherit}
+    input::placeholder,textarea::placeholder{color:var(--muted)}
+
+    footer{margin-top:40px;text-align:center;color:var(--muted)}
+
+    /* utilities */
+    .fadein{opacity:0;transform:translateY(12px);transition:opacity 520ms ease, transform 520ms ease}
+    .inview{opacity:1;transform:none}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      nav{display:none}
+      .projects{grid-template-columns:1fr}
+      .navwrap{padding:10px}
+      .intro h1{font-size:28px}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navwrap">
+      <div class="brand">
+        <div class="logo">TD</div>
+        <div>
+          <div style="font-weight:700">Tarun D</div>
+          <div style="font-size:12px;color:var(--muted)">FULL STACK DEVELOPER </div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="intro fadein">
+        <h1>Crafting delightful web experiences</h1>
+        <p class="lead">Hi — I'm <strong>Tarun D</strong>, a Fullstack developer who builds accessible, responsive interfaces and small full‑stack apps. I love clean design, performance and shipping features users enjoy.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="/resume.pdf" target="_blank">Download Resume</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">
+          <strong>Location:</strong> MYSURU • <strong>Available:</strong> For freelancing and full-time
+        </div>
+      </div>
+
+      <aside class="profilecard fadein">
+        <div class="avatar"></div>
+        <div style="text-align:center;font-weight:700">TARUNA D</div>
+        <div class="small" style="text-align:center;margin-top:6px">java • spring Boot  • React • JavaScript</div>
+        <div style="margin-top:14px;display:flex;gap:8px;justify-content:center">
+          <a class="btn" href="mailto:youremail@example.com">Email Me</a>
+          <a class="btn secondary" href="#contact">Contact</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="fadein">
+      <div class="section-title"><h2>About</h2></div>
+      <div style="background:var(--card);padding:18px;border-radius:12px"> 
+        <p style="color:var(--muted)">I’m Tarun, currently a 5th-semester student at Maharaja Institute of Technology. I’m diving into Java and Spring Boot, and I’ve already developed a few basic projects to build my skills.</p>
+        <ul style="color:var(--muted);margin-top:12px">
+          <li>Design and build small-to-medium web applications.</li>
+          <li>Focus on performance, accessibility and maintainable code.</li>
+          <li>Open to collaboration and freelance work.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="fadein">
+      <div class="section-title"><h2>Selected Projects</h2></div>
+      <div class="projects">
+        <article class="card">
+          <h3>Registration form</h3>
+          <p class="small" style="color:var(--muted)">The application presents a web-based registration form that collects basic user details (name, email, password, contact number) and stores them in a backend database.</p>
+          <div style="margin-top:12px" class="tags">
+            <span class="tag">java</span>
+            <span class="tag">spring boot</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn secondary" href="#">Live</a>
+            <a class="btn" href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Simple calclator</h3>
+          <p class="small">A web-based calculator that allows users to perform basic arithmetic operations (addition, subtraction, multiplication, division).
+Built with a clean HTML/CSS front end and JavaScript/Java backend logic to process inputs and display results dynamically.</p>
+          <div style="margin-top:12px" class="tags">
+            <span class="tag">Java Script</span>
+            <span class="tag">Design</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn secondary" href="#">Live</a>
+            <a class="btn" href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>portfolio</h3>
+          <p class="small">A visual journey showcasing my creative vision and best photographic work</p>
+          <div style="margin-top:12px" class="tags">
+            <span class="tag">Fullstack</span>
+            <span class="tag">Spring Boot</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn secondary" href="#">Live</a>
+            <a class="btn" href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="fadein">
+      <div class="section-title"><h2>Skills</h2></div>
+      <div style="background:var(--card);padding:14px;border-radius:12px">
+        <div class="skills">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Spring Boot</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="fadein">
+      <div class="section-title"><h2>Contact</h2></div>
+      <div class="contact-grid">
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your name" required />
+          <input type="email" id="email" placeholder="you@example.com" required />
+          <textarea id="message" rows="6" placeholder="Tell me about your project..." required></textarea>
+          <div style="display:flex;gap:8px">
+            <button class="btn" type="submit">Send Message</button>
+            <button type="button" class="btn secondary" id="copyEmail">Copy Email</button>
+          </div>
+          <div id="formMsg" style="color:var(--muted);font-size:13px;margin-top:8px"></div>
+        </form>
+
+        <aside style="background:var(--card);padding:16px;border-radius:12px">
+          <h3>Say hi 👋</h3>
+          <p class="small">Email: <a href="mailto:youremail@example.com">tarumbasavaraj00@gmail.com</a></p>
+          <p class="small">Location: MYSURU , KARNATAKA</p>
+          <p class="small">Resume: <a href="/resume.pdf" target="_blank">Download</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div style="max-width:var(--max-width);margin:20px auto;color:var(--muted)">© <span id="year"></span>Taruna D — Built with HTML, CSS & JS</div>
+    </footer>
+  </main>
+
+  <script>
+    // small UX & animation: reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target); }
+      })
+    }, {threshold:0.12});
+    document.querySelectorAll('.fadein').forEach(el=>io.observe(el));
+
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // contact form (no backend) — simulate success and clear
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    form.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      msg.textContent = 'Pretending to send...';
+      setTimeout(()=>{ msg.textContent = 'Thanks — message received (demo). I will reply to your email soon.'; form.reset(); }, 900);
+    });
+
+    // copy email
+    document.getElementById('copyEmail').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText('youremail@example.com');
+        const el = document.getElementById('formMsg'); el.textContent = 'Email copied to clipboard.';
+      }catch(err){ alert('Could not copy automatically — select & copy: youremail@example.com') }
+    });
+
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
